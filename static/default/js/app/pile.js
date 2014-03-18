@@ -163,7 +163,6 @@ $(document).on('submit', '#form-tag-picker', function(e) {
 
   // Send Result
   mailpile.tag_add(mailpile.tags_cache, mailpile.messages_cache, function(result) {
-
     var tag_link_template = $('#template-search-pile-tags-link').html();
 
     $.each(result.msg_ids, function(key, mid) {

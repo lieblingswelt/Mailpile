@@ -52,3 +52,20 @@ $(document).on('click', '.bulk-action-add-to-group', function(e) {
   $('#modal-full').html(_.template(modal_html, {}));
   $('#modal-full').modal({ backdrop: true, keyboard: true, show: true, remote: false });
 });
+
+
+// Unread
+$(document).on('click', '.bulk-action-unread', function() {
+    mailpile.bulk_cache_add('tags_cache', 3)
+    mailpile.tag_add(mailpile.tags_cache, mailpile.messages_cache, function(result) {
+
+      // Update Pile View
+      $.each(mailpile.bulk_cache_add, function(key, mid) {
+      debugger
+        $('#pile-message-' + mid).fadeOut('fast');
+      });
+
+      // Empty Bulk Cache
+      mailpile.bulk_cache = [];
+    });
+});
