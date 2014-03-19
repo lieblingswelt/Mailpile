@@ -1,5 +1,5 @@
 /* Pile - Bulk Action Link */
-$(document).on('click', '.bulk-action-tag', function(e) {
+$(document).on('click', '.bulk-action-tag', '.bulk-action-untag', function(e) {
 
   // Open Modal with selection options
   mailpile.tag_list(function(result) {
@@ -66,8 +66,8 @@ $(document).on('click', '.bulk-action-unread', function() {
 
 // Mark Read
 $(document).on('click', '.bulk-action-read', function() {
-    mailpile.bulk_cache_add('tags_cache', 'new')
-    mailpile.tag_add_delete(mailpile.tags_cache, mailpile.messages_cache, function(result) {
+    mailpile.tag_add_delete(mailpile.tags_cache, 'new', mailpile.messages_cache, function(result) {
+
 
       // Empty Bulk Cache
       mailpile.bulk_cache = [];

@@ -154,15 +154,17 @@ $(document).on('submit', '#form-tag-picker', function(e) {
   e.preventDefault();
   var action = $("button:focus").data('action');
 
+  var add_tags = []
+  var remove_tags = []
   if (action == 'add') { 
-    mailpile.tags_cache;
+    add_tags = mailpile.tags_cache;
   }
   else if (action === 'remove') {
-    var tags_add = $('#form-tag-picker').serialize();
+    remove_tags = mailpile.tags_cache
   }
 
   // Send Result
-  mailpile.tag_add(mailpile.tags_cache, mailpile.messages_cache, function(result) {
+   mailpile.tag_add_delete(add_tags, remove_tags, mailpile.messages_cache, function(result) {
     var tag_link_template = $('#template-search-pile-tags-link').html();
 
     $.each(result.msg_ids, function(key, mid) {
@@ -184,9 +186,9 @@ $(document).on('submit', '#form-tag-picker', function(e) {
       // Remove Tags
       $.each(result.untagged, function(key, untag) {
         console.log('performing UNTAG on: ' + untag);
-        if ($('#pile-message-tag-' + mid + '-' + tid).length) {
-          $('#pile-message-tag-' + mid + '-' + tid).remove();
-        };
+ //       if ($('#pile-message-tag-' + mid + '-' + tid).length) {
+ //         $('#pile-message-tag-' + mid + '-' + tid).remove();
+ //       };
       });      
 
     });
@@ -242,7 +244,7 @@ $('li.sidebar-tags-draggable').droppable({
 
     // Add / Delete
     mailpile.tag_add_delete($(this).data('tag_name'), delete_tag, mailpile.messages_cache, function() {
-
+debugger
       // Update Pile View
       $.each(mailpile.messages_cache, function(key, mid) {
         $('#pile-message-' + mid).fadeOut('fast');
