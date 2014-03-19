@@ -56,8 +56,7 @@ $(document).on('click', '.bulk-action-add-to-group', function(e) {
 
 // Mark Unread
 $(document).on('click', '.bulk-action-unread', function() {
-    mailpile.bulk_cache_add('tags_cache', 'new')
-    mailpile.tag_add(mailpile.tags_cache, mailpile.messages_cache, function(result) {
+    mailpile.tag_add_delete('new', mailpile.tags_cache, mailpile.messages_cache, function(result) {
 
       // Empty Bulk Cache
       mailpile.bulk_cache = [];

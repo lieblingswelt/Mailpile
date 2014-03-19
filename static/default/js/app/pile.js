@@ -244,7 +244,6 @@ $('li.sidebar-tags-draggable').droppable({
 
     // Add / Delete
     mailpile.tag_add_delete($(this).data('tag_name'), delete_tag, mailpile.messages_cache, function() {
-debugger
       // Update Pile View
       $.each(mailpile.messages_cache, function(key, mid) {
         $('#pile-message-' + mid).fadeOut('fast');
