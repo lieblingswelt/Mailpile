@@ -53,7 +53,6 @@ $(document).on('click', '.bulk-action-add-to-group', function(e) {
   $('#modal-full').modal({ backdrop: true, keyboard: true, show: true, remote: false });
 });
 
-
 // Mark Unread
 $(document).on('click', '.bulk-action-unread', function() {
     mailpile.tag_add_delete('new', mailpile.tags_cache, mailpile.messages_cache, function(result) {
